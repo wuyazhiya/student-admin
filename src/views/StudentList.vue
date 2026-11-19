@@ -176,7 +176,9 @@ watch(
 
     <!-- 列表 -->
     <div class="card table-card">
-      <table class="table">
+      <!-- 窄屏时横向滚动，避免列被挤压换行 -->
+      <div class="table-scroll">
+        <table class="table">
         <thead>
           <tr>
             <th>学号</th>
@@ -234,7 +236,8 @@ watch(
             </td>
           </tr>
         </tbody>
-      </table>
+        </table>
+      </div>
 
       <div class="table-card__foot">
         <Pagination
@@ -308,6 +311,22 @@ watch(
 
 .table-card {
   overflow: hidden;
+}
+
+/* 表格最小宽度：窗口变窄时出现横向滚动条，而不是把每个单元格挤成多行 */
+.table-scroll {
+  overflow-x: auto;
+}
+
+.table-scroll .table {
+  min-width: 880px;
+}
+
+/* 学号、姓名、时间不换行，保证可读性 */
+.table td:nth-child(1),
+.table td:nth-child(2),
+.table td:nth-child(6) {
+  white-space: nowrap;
 }
 
 .table-card__foot {
